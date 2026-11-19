@@ -4,6 +4,20 @@ void main() {
   runApp(const MainApp());
 }
 
+class Portfolio {
+  String name;
+  String currency;
+  int cash; // in pennies
+  // Pennies, because double doesn't represent decimal fractions exactly
+  // e.g print(0.1+0.2) = 0.300000000000000004
+
+  Portfolio({
+    required this.name,
+    required this.currency,
+    this.cash = 0,
+  });
+}
+
 class ChangingButton extends StatefulWidget {
   const ChangingButton({super.key});
 
@@ -49,11 +63,20 @@ class _ChangingButtonState extends State<ChangingButton> {
       child: Text(buttonText),
     );
 
+    final Portfolio portfolio = Portfolio( 
+      name: 'Cash Portfolio',
+      currency: "GBP",
+      cash: 10000,
+    );
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         clicker,
-        clickCounter
+        clickCounter,
+        Text( 
+          'Cash: ${portfolio.currency} ${(portfolio.cash / 100).toStringAsFixed(2)}',
+        ),
       ]
     );
   }
