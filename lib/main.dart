@@ -9,11 +9,32 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text(
-        'im learning flutter',
-         style: TextStyle(fontSize: 64, color: Colors.purple),
-         ))),
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Column( 
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'im learning flutter',
+                style: TextStyle( 
+                  fontSize: 64,
+                  color: Colors.purple,
+                ),
+              ),
+              TextButton(  
+                onPressed: () {
+                  // something
+                },
+
+                child: Text('Click me'),
+              )
+            ]
+
+          )
+          
+        )
+      ),
     );
   }
 }
