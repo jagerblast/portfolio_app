@@ -16,13 +16,23 @@ class _ChangingButtonState extends State<ChangingButton> {
   // above must be static & const 
   // making it static means it belongs to the class rather than an individual state object
   String buttonText = defaultText;
+  int clickCount = 0;
 
   @override  
   Widget build(BuildContext context) {
-    return TextButton(
+    Text clickCounter = Text( 
+      'Clicked $clickCount times',
+      style: TextStyle( 
+        fontSize: 32,
+        color: Colors.green
+      )
+    );
+
+    TextButton clicker = TextButton(
       onPressed: () async {
         setState(() {
           buttonText = 'You clicked me!!!';
+          clickCount++;
         });
 
         // Wait a second before continuing
@@ -38,6 +48,14 @@ class _ChangingButtonState extends State<ChangingButton> {
 
       child: Text(buttonText),
     );
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        clicker,
+        clickCounter
+      ]
+    );
   }
 }
 
@@ -46,8 +64,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(  
+          title: const Text('Your Portfolio'),
+          centerTitle: true,
+        ),
         body: Center(
           child: Column( 
             mainAxisSize: MainAxisSize.min,
