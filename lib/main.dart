@@ -32,6 +32,12 @@ class _ChangingButtonState extends State<ChangingButton> {
   String buttonText = defaultText;
   int clickCount = 0;
 
+  final Portfolio portfolio = Portfolio( 
+      name: 'Cash Portfolio',
+      currency: "GBP",
+      cash: 10000,
+    );
+
   @override  
   Widget build(BuildContext context) {
     Text clickCounter = Text( 
@@ -47,6 +53,7 @@ class _ChangingButtonState extends State<ChangingButton> {
         setState(() {
           buttonText = 'You clicked me!!!';
           clickCount++;
+          portfolio.cash += 10000;
         });
 
         // Wait a second before continuing
@@ -61,12 +68,6 @@ class _ChangingButtonState extends State<ChangingButton> {
       },
 
       child: Text(buttonText),
-    );
-
-    final Portfolio portfolio = Portfolio( 
-      name: 'Cash Portfolio',
-      currency: "GBP",
-      cash: 10000,
     );
 
     return Column(
