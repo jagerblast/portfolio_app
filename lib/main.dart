@@ -18,6 +18,16 @@ class Portfolio {
   });
 }
 
+class Gold {
+  int quantity;
+  int purity;
+
+  Gold({
+    required this.quantity,
+    required this.purity,
+  });
+}
+
 class ChangingButton extends StatefulWidget {
   const ChangingButton({super.key});
 
@@ -83,6 +93,34 @@ class _ChangingButtonState extends State<ChangingButton> {
   }
 }
 
+class Navbar extends StatelessWidget {
+  const Navbar({required this.title, super.key});
+
+  // fields in a widget subclass are always marked final
+  final Widget title;
+
+  @override  
+  Widget build(BuildContext context) {
+    return Container(  
+      height: 56, // in logical pixels
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      decoration: BoxDecoration(color: Colors.blue[500]),
+      // Row is a horizontal, linear layout
+      child: Row(  
+        children: [ 
+          const IconButton(  
+            icon: Icon(Icons.menu),
+            tooltip: "Navigation menu",
+            onPressed: null // null disables the button
+          ),
+          // Expanded expands its child to fill the available space
+          Expanded(child: title)
+        ]
+      )
+    );
+  }
+}
+
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
@@ -99,6 +137,9 @@ class MainApp extends StatelessWidget {
           child: Column( 
             mainAxisSize: MainAxisSize.min,
             children: [
+              Navbar(  
+                title: Text('example title'),
+              ),
               const Text(
                 'im learning flutter',
                 style: TextStyle( 
